@@ -1,0 +1,46 @@
+<templateSet group="PHP">
+  <template name="mysql" value="$con = mysql_connect(&quot;$LOCALHOST$&quot;,&quot;$USER$&quot;,&quot;$PASSWORD$&quot;);&#10;if (!$con)&#10;  {&#10;  die('Could not connect: ' . mysql_error());&#10;  }&#10;&#10;mysql_select_db(&quot;$DB_NAME$&quot;, $con);&#10;&#10;$result = mysql_query(&quot;$SQL$&quot;);&#10;&#10;while($row = mysql_fetch_array($result))&#10;  {&#10;  echo $row['$FIELD'];&#10;  echo &quot;&lt;br /&gt;&quot;;&#10;  }&#10;&#10;mysql_close($con);" description="mysql_doc" toReformat="false" toShortenFQNames="true">
+    <variable name="LOCALHOST" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="USER" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PASSWORD" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="DB_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SQL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="var" value="var_dump($END$);" description="var_dump();" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="header" value="header(&quot;Content-type: text/html; charset=utf-8&quot;);" description="header(&quot;Content-type: text/html; charset=utf-8&quot;);" toReformat="true" toShortenFQNames="true">
+    <context />
+  </template>
+  <template name="hea" value="header(&quot;Content-type: text/html; charset=utf-8&quot;);" shortcut="ENTER" description="header(&quot;Content-type: text/html; charset=utf-8&quot;);" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="mysqli" value="$con = mysqli_connect(&quot;$LOCALHOST$&quot;,&quot;$USER$&quot;,&quot;$PASSWORD$&quot;);&#10;if (!$con)&#10;  {&#10;  die('Could not connect: ' . mysqli_error());&#10;  }&#10;  &#10;mysqli_query('set names utf8');&#10;&#10;mysqli_select_db(&quot;$DB_NAME$&quot;, $con);&#10;&#10;$sql = '$sql$';&#10;&#10;$result = mysqli_query($sql);&#10;&#10;while($row = mysqli_fetch_array($result))&#10;  {&#10;  echo $row['$FIELD$'];&#10;  echo &quot;&lt;br /&gt;&quot;;&#10;  }&#10;&#10;mysqli_close($con);" description="mysqli_doc" toReformat="false" toShortenFQNames="true">
+    <variable name="LOCALHOST" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="USER" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PASSWORD" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="DB_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="sql" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FIELD" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="pdo" value="$dbms='$MYSQL$';     //数据库类型&#10;$host='$LOCALHOST$'; //数据库主机名&#10;$dbName='$DB_NAME$';    //使用的数据库&#10;$user='$USER$';      //数据库连接用户名&#10;$pass='$PASSWORD$';          //对应的密码&#10;$dsn=&quot;$dbms:host=$host;dbname=$dbName&quot;;&#10;&#10;&#10;try {&#10;    $dbh = new PDO($dsn, $user, $pass); //初始化一个PDO对象&#10;    //默认这个不是长连接，如果需要数据库长连接，需要最后加一个参数：array(PDO::ATTR_PERSISTENT =&gt; true) 变成这样：&#10;    //$db = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT =&gt; true));&#10;    &#10;    &#10;    foreach ($dbh-&gt;query('SELECT * from FOO') as $row) {&#10;        print_r($row); //你可以用 echo($GLOBAL); 来看到这些值&#10;    }&#10;    &#10;    $dbh = null;&#10;} catch (PDOException $e) {&#10;    die (&quot;Error!: &quot; . $e-&gt;getMessage() . &quot;&lt;br/&gt;&quot;);&#10;}&#10;" description="pdo_doc" toReformat="false" toShortenFQNames="true">
+    <variable name="MYSQL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LOCALHOST" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="DB_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="USER" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PASSWORD" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+</templateSet>
